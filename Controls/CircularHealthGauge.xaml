@@ -1,0 +1,73 @@
+<UserControl x:Class="MemGuard.Controls.CircularHealthGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="clr-namespace:MemGuard.Localization"
+             mc:Ignorable="d"
+             d:DesignHeight="220"
+             d:DesignWidth="220"
+             UseLayoutRounding="True"
+             SnapsToDevicePixels="True">
+    <Grid>
+        <Ellipse x:Name="TrackRing"
+                 Width="168"
+                 Height="168"
+                 Stroke="{DynamicResource BorderDarkBrush}"
+                 StrokeThickness="14"
+                 Opacity="0.55"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
+
+        <Canvas x:Name="ArcCanvas"
+                Width="220"
+                Height="220"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                SnapsToDevicePixels="True">
+            <Path x:Name="GlowPath"
+                  Stroke="{DynamicResource ElectricBlueBrush}"
+                  StrokeThickness="14"
+                  StrokeEndLineCap="Round"
+                  StrokeStartLineCap="Round"
+                  Opacity="0.30">
+                <Path.Effect>
+                    <BlurEffect Radius="8" />
+                </Path.Effect>
+            </Path>
+
+            <Path x:Name="ProgressPath"
+                  StrokeThickness="14"
+                  StrokeEndLineCap="Round"
+                  StrokeStartLineCap="Round">
+                <Path.Stroke>
+                    <LinearGradientBrush x:Name="GaugeGradient" StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop x:Name="GaugeGradientStart" Color="{DynamicResource ElectricBlueColor}" Offset="0" />
+                        <GradientStop x:Name="GaugeGradientEnd" Color="{DynamicResource NeonPurpleColor}" Offset="1" />
+                    </LinearGradientBrush>
+                </Path.Stroke>
+            </Path>
+        </Canvas>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="ValueText"
+                       Text="100"
+                       Foreground="{DynamicResource TextWhiteBrush}"
+                       FontSize="46"
+                       FontWeight="Bold"
+                       FontFamily="{StaticResource MainFont}"
+                       HorizontalAlignment="Center" />
+            <TextBlock x:Name="LabelText"
+                       Text="{loc:Loc Key=Memory.SystemHealth}"
+                       Foreground="{DynamicResource TextSecondaryBrush}"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Width="110"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       FontFamily="{StaticResource MainFont}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>MemGuard</AssemblyName>
+    <RootNamespace>MemGuard</RootNamespace>
+    <Company>Intech Yazılım</Company>
+    <Product>MemGuard</Product>
+    <Authors>Göktuğ Muhammed Ali Tilki;Efe Özcan</Authors>
+    <Copyright>Copyright (c) Intech Yazılım</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\brand-mark.png" />
+    <Resource Include="Assets\logomemguard.png" />
+    <Resource Include="Assets\sidebar-logo.png" />
+  </ItemGroup>
+
+</Project>

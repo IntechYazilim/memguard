@@ -1,0 +1,183 @@
+<UserControl x:Class="MemGuard.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="clr-namespace:MemGuard.Localization"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="{loc:Loc Key=Settings.Kicker}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11" FontWeight="Bold" FontFamily="{StaticResource MainFont}"/>
+            <TextBlock Text="{loc:Loc Key=Settings.Title}" Foreground="{StaticResource TextWhiteBrush}" FontSize="24" FontWeight="Bold" Margin="0,4,0,0" FontFamily="{StaticResource MainFont}"/>
+            <TextBlock Text="{loc:Loc Key=Settings.Subtitle}" Foreground="{StaticResource TextMutedBrush}" FontSize="12" Margin="0,6,0,0" FontFamily="{StaticResource MainFont}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Background="{StaticResource CardBgBrush}"
+                        BorderBrush="{StaticResource BorderDarkBrush}"
+                        BorderThickness="1"
+                        CornerRadius="18"
+                        Padding="24">
+                    <StackPanel>
+                        <TextBlock Text="{loc:Loc Key=Settings.General}" Foreground="{StaticResource TextWhiteBrush}" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource MainFont}"/>
+                        <TextBlock Text="{loc:Loc Key=Settings.GeneralDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" Margin="0,4,0,18" FontFamily="{StaticResource MainFont}"/>
+
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Loc Key=Settings.StartWithWindows}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                <TextBlock Text="{loc:Loc Key=Settings.StartWithWindowsDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            </StackPanel>
+                            <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding StartWithWindows}" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Loc Key=Settings.MinimizeToTray}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                <TextBlock Text="{loc:Loc Key=Settings.MinimizeToTrayDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            </StackPanel>
+                            <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding MinimizeToTray}" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Loc Key=Settings.Notifications}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                <TextBlock Text="{loc:Loc Key=Settings.NotificationsDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            </StackPanel>
+                            <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding NotificationsEnabled}" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Grid Margin="0,0,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Loc Key=Settings.AutoMonitoring}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                <TextBlock Text="{loc:Loc Key=Settings.AutoMonitoringDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            </StackPanel>
+                            <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding AutomaticMonitoring}" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="{loc:Loc Key=Settings.HardwareAcceleration}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                <TextBlock Text="{loc:Loc Key=Settings.HardwareAccelerationDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            </StackPanel>
+                            <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding HardwareAcceleration}" VerticalAlignment="Center" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Column="2">
+                    <Border Background="{StaticResource CardBgBrush}"
+                            BorderBrush="{StaticResource BorderDarkBrush}"
+                            BorderThickness="1"
+                            CornerRadius="18"
+                            Padding="24"
+                            Margin="0,0,0,24">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Loc Key=Settings.Themes}" Foreground="{StaticResource TextWhiteBrush}" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource MainFont}"/>
+                            <TextBlock Text="{loc:Loc Key=Settings.ThemesDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" Margin="0,4,0,18" FontFamily="{StaticResource MainFont}"/>
+
+                            <TextBlock Text="{loc:Loc Key=Settings.ActiveTheme}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                            <ComboBox ItemsSource="{Binding Themes}"
+                                      DisplayMemberPath="DisplayName"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding SelectedTheme}"
+                                      Height="36"
+                                      Margin="0,8,0,16" />
+
+                            <TextBlock Text="{loc:Loc Key=Settings.Language}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                            <TextBlock Text="{loc:Loc Key=Settings.LanguageDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            <ComboBox ItemsSource="{Binding Languages}"
+                                      DisplayMemberPath="DisplayName"
+                                      SelectedValuePath="Code"
+                                      SelectedValue="{Binding SelectedLanguage}"
+                                      Height="36"
+                                      Margin="0,8,0,0" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="{StaticResource CardBgBrush}"
+                            BorderBrush="{StaticResource BorderDarkBrush}"
+                            BorderThickness="1"
+                            CornerRadius="18"
+                            Padding="24">
+                        <StackPanel>
+                            <TextBlock Text="{loc:Loc Key=Settings.SmartAutoOptimize}" Foreground="{StaticResource TextWhiteBrush}" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource MainFont}"/>
+                            <TextBlock Text="{loc:Loc Key=Settings.SmartAutoOptimizeDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" Margin="0,4,0,18" FontFamily="{StaticResource MainFont}"/>
+
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Loc Key=Settings.EnableAutoOptimize}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                    <TextBlock Text="{loc:Loc Key=Settings.EnableAutoOptimizeDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                                </StackPanel>
+                                <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding AutoOptimizeEnabled}" VerticalAlignment="Center" />
+                            </Grid>
+
+                            <TextBlock Text="{loc:Loc Key=Settings.TriggerThreshold}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                            <TextBlock Text="{loc:Loc Key=Settings.TriggerThresholdDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            <ComboBox ItemsSource="{Binding ThresholdOptions}"
+                                      SelectedItem="{Binding AutoOptimizeThresholdPercent}"
+                                      Height="36"
+                                      Margin="0,8,0,16" />
+
+                            <TextBlock Text="{loc:Loc Key=Settings.BaseInterval}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                            <TextBlock Text="{loc:Loc Key=Settings.BaseIntervalDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                            <ComboBox ItemsSource="{Binding AutoOptimizeIntervals}"
+                                      SelectedItem="{Binding AutoOptimizeIntervalMinutes}"
+                                      Height="36"
+                                      Margin="0,8,0,16" />
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Loc Key=Settings.AdaptiveInterval}" Foreground="{StaticResource TextWhiteBrush}" FontWeight="Bold" FontSize="13.5" FontFamily="{StaticResource MainFont}"/>
+                                    <TextBlock Text="{loc:Loc Key=Settings.AdaptiveIntervalDesc}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="0,2,0,0" FontFamily="{StaticResource MainFont}"/>
+                                </StackPanel>
+                                <ToggleButton Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding AutoOptimizeAdaptiveInterval}" VerticalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

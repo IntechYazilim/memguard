@@ -1,0 +1,229 @@
+<Window x:Class="MemGuard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MemGuard.Controls"
+        xmlns:helpers="clr-namespace:MemGuard.Helpers"
+        xmlns:loc="clr-namespace:MemGuard.Localization"
+        xmlns:viewmodels="clr-namespace:MemGuard.ViewModels"
+        xmlns:views="clr-namespace:MemGuard.Views"
+        mc:Ignorable="d"
+        Title="MemGuard Optimizer"
+        Height="720"
+        Width="1140"
+        MinWidth="1000"
+        MinHeight="650"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        Background="{StaticResource BgBrush}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="45"
+                      ResizeBorderThickness="6"
+                      GlassFrameThickness="0"
+                      CornerRadius="12" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <helpers:StringEqualsConverter x:Key="StringEqualsConverter" />
+        <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+            <views:DashboardView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:MemoryViewModel}">
+            <views:MemoryView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ProcessesViewModel}">
+            <views:ProcessesView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CleanerViewModel}">
+            <views:CleanerView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StartupViewModel}">
+            <views:StartupView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:GameModeViewModel}">
+            <views:GameModeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{DynamicResource BgColor}" Offset="0" />
+                <GradientStop Color="{DynamicResource SidebarBgColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Ellipse Width="540"
+                 Height="540"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Top"
+                 Margin="0,-220,-180,0"
+                 IsHitTestVisible="False"
+                 Opacity="0.09">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="{DynamicResource ElectricBlueColor}" Offset="0" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Ellipse Width="420"
+                 Height="420"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Bottom"
+                 Margin="-120,0,0,-180"
+                 IsHitTestVisible="False"
+                 Opacity="0.07">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="{DynamicResource NeonPurpleColor}" Offset="0" />
+                    <GradientStop Color="#00000000" Offset="1" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource SidebarBgBrush}"
+                BorderBrush="{DynamicResource BorderDarkBrush}"
+                BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Margin="20,18,20,0"
+                        VerticalAlignment="Center"
+                        Background="Transparent">
+                    <Image Source="/Assets/sidebar-logo.png"
+                           Width="176"
+                           Height="46"
+                           HorizontalAlignment="Left"
+                           Stretch="Uniform"
+                           SnapsToDevicePixels="True"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
+                </Border>
+
+                <StackPanel Grid.Row="1" Margin="0,16,0,0">
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.Dashboard}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Dashboard}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="Dashboard" />
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.Memory}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Memory}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="Memory" />
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.Processes}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Processes}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="Processes" />
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.Cleaner}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Cleaner}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="Cleaner" />
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.Startup}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=Startup}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="Startup" />
+                    <RadioButton Style="{StaticResource SidebarButton}"
+                                 Content="{loc:Loc Key=Nav.GameMode}"
+                                 IsChecked="{Binding CurrentPageName, Converter={StaticResource StringEqualsConverter}, ConverterParameter=GameMode}"
+                                 Command="{Binding NavigateCommand}"
+                                 CommandParameter="GameMode" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="20,0,20,20">
+                    <Separator Background="{StaticResource BorderDarkBrush}" Height="1" Margin="0,0,0,14" />
+
+                    <Grid Margin="0,0,0,6">
+                        <TextBlock Text="{loc:Loc Key=Sidebar.SystemStatus}"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   FontSize="11"
+                                   FontFamily="{StaticResource MainFont}"/>
+                        <TextBlock Text="{Binding DashboardVM.SystemStatus}"
+                                   Foreground="{StaticResource SuccessBrush}"
+                                   FontWeight="SemiBold"
+                                   FontSize="11"
+                                   HorizontalAlignment="Right"
+                                   FontFamily="{StaticResource MainFont}"/>
+                    </Grid>
+
+                    <Grid>
+                        <TextBlock Text="{loc:Loc Key=Sidebar.Version}"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   FontSize="11"
+                                   FontFamily="{StaticResource MainFont}"/>
+                        <TextBlock Text="v1.0.0"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   FontSize="11"
+                                   HorizontalAlignment="Right"
+                                   FontFamily="{StaticResource MainFont}"/>
+                    </Grid>
+
+                    <Button Style="{StaticResource ModernButton}"
+                            Content="{loc:Loc Key=Nav.Settings}"
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="Settings"
+                            Height="40"
+                            Margin="0,12,0,0"
+                            Background="{StaticResource CardAltBgBrush}"
+                            HorizontalAlignment="Stretch" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Margin="0,0,12,0"
+                  WindowChrome.IsHitTestVisibleInChrome="True">
+                <StackPanel Orientation="Horizontal">
+                    <Button Click="Minimize_Click" Width="36" Height="28" Style="{StaticResource ModernButton}" BorderThickness="0" Background="Transparent" Padding="0">
+                        <Path Data="M20,14H4V12H20V14Z" Fill="{StaticResource TextSecondaryBrush}" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                    <Button Click="Maximize_Click" Width="36" Height="28" Style="{StaticResource ModernButton}" BorderThickness="0" Background="Transparent" Padding="0" Margin="4,0">
+                        <Path Data="M4,4H20V20H4V4M6,8V18H18V8H6Z" Fill="{StaticResource TextSecondaryBrush}" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                    <Button Click="Close_Click" Width="36" Height="28" Style="{StaticResource ModernButton}" BorderThickness="0" Background="Transparent" Padding="0">
+                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="{StaticResource TextSecondaryBrush}" Width="10" Height="10" Stretch="Uniform"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+        </Grid>
+
+        <controls:NotificationToast x:Name="ToastNotification"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Panel.ZIndex="1000"/>
+    </Grid>
+</Window>
